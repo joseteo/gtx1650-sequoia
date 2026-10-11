@@ -1,0 +1,27 @@
+{
+  "pci": [
+    {
+      "vendor": "10de",
+      "device": "1f99",
+      "class": "0x030000",
+      "acpi_path": "PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)",
+      "name": "NVIDIA GeForce GTX 1650"
+    },
+    {
+      "vendor": "10de",
+      "device": "10fa",
+      "class": "0x040300",
+      "acpi_path": "PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x1)",
+      "name": "NVIDIA High Definition Audio Controller"
+    },
+    {
+      "vendor": "8086",
+      "device": "3e9b",
+      "class": "0x030000",
+      "acpi_path": "PciRoot(0x0)/Pci(0x2,0x0)",
+      "name": "Intel UHD Graphics 630"
+    }
+  ],
+  "macos": "15.7.4",
+  "sip": "0x0a43"
+}

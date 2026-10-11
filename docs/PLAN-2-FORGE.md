@@ -1,0 +1,5 @@
+# Plan 2 — `forge`: OpenCore EFI generation — **next**
+
+**Status:** planned for v2, not started. The `forge` subcommand already exists in the CLI and exits with "not yet implemented (planned for v2)".
+
+`forge` is goal 4 of the design spec ([docs/superpowers/specs/2026-10-11-greenlight-design.md §3 goal 4](superpowers/specs/2026-10-11-greenlight-design.md)): generate a complete, bootable OpenCore EFI for the detected hardware — official OpenCore and kext releases (Lilu, VirtualSMC, WhateverGreen, AppleALC, NVMeFix, plus networking/input per detected hardware) downloaded and SHA-256-verified, `config.plist` generated from hardware-matched templates, standard known-good SSDTs, SMBIOS serials, written to the target ESP/USB. Per settlement §11.1 the generated EFI is **installer-safe** (BAR/IONDRVSupport settings compatible with the macOS installer — the opposite of the NVIDIA runtime set), and once the fresh install boots, `greenlight fix` applies the Audience-A NVIDIA set; `doctor` tells the user which stage they're in. Like `fix`, `forge` automates only validated hardware profiles and scopes down to a tailored report for anything else.

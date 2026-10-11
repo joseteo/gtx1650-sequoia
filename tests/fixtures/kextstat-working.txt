@@ -1,0 +1,40 @@
+Index Refs Address            Size       Wired      Name (Version) UUID <Linked Against>
+    1  141 0                  0          0          com.apple.kpi.bsd (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    2   20 0                  0          0          com.apple.kpi.dsep (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    3  175 0                  0          0          com.apple.kpi.iokit (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    4    0 0                  0          0          com.apple.kpi.kasan (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    5    0 0                  0          0          com.apple.kpi.kcov (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    6  179 0                  0          0          com.apple.kpi.libkern (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    7  158 0                  0          0          com.apple.kpi.mach (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    8  110 0                  0          0          com.apple.kpi.private (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+    9  112 0                  0          0          com.apple.kpi.unsupported (24.6.0) A8F2DD73-2B65-3BF9-9B5A-BA2B753AA960 <>
+   10   14 0xffffff80031e7000 0x81fe0    0x81fe0    com.apple.kec.corecrypto (14.0) 73605282-B982-31D4-9F9C-3027B1F9F833 <9 8 7 6 3 1>
+   11    0 0xffffff80018f6000 0x3000     0x3000     com.apple.kec.AppleEncryptedArchive (1) 1EB14BFB-87E1-3DA1-89F5-A3FCAB099675 <10 8 7 6>
+   17   34 0xffffff8002407000 0x2000     0x2000     com.apple.iokit.IOACPIFamily (1.4) 50D529B0-A929-3533-839B-6CE41FC937F2 <9 8 6 3>
+   18   36 0xffffff8002886000 0x35000    0x35000    com.apple.iokit.IOPCIFamily (2.9) CE5B2616-7BAB-3BFD-A324-FC2552373CC2 <9 8 7 6 3>
+   19   11 0xffffff8001bca000 0x19ffe    0x19ffe    com.apple.driver.AppleSMC (3.1.9) CB4E3E0B-2583-3476-A215-30C8233D2D64 <18 17 16 9 8 7 6 3 1>
+   57   12 0xffffff8004011000 0x31000    0x31000    as.vit9696.Lilu (1.7.2) C2A303B8-6D22-3163-A905-5DB8E340D285 <9 7 6 3 2 1>
+   58    3 0xffffff8004042000 0x18000    0x18000    as.vit9696.VirtualSMC (1.3.7) DE3A2587-8A7F-389A-BC66-19277E0D0835 <57 17 9 7 6 3 1>
+   60    0 0xffffff800405a000 0x18000    0x18000    ru.usrsse2.SMCBatteryManager (1.3.7) 248EC238-4159-3D8A-8B5F-7F26A1331133 <59 58 57 17 9 7 6 3 1>
+   61    0 0xffffff80040a1000 0x83000    0x83000    as.vit9696.WhateverGreen (1.7.0) C960BCE0-7D95-3D9B-9143-2A65C6F714F2 <57 18 9 7 6 3 2 1>
+   62    0 0xffffff8004124000 0x1cf000   0x1cf000   as.vit9696.AppleALC (1.9.7) 9B6EA822-CBA7-36F2-87C7-AA4ACFF697F5 <57 18 9 7 6 3 1>
+   63    1 0xffffff80043ae000 0x13000    0x13000    com.alexandred.VoodooI2CServices (1) B9FE9E08-E3BF-311D-8200-A52D7A41591A <6 3>
+   64    0 0xffffff8005f11000 0xb000     0xb000     as.acidanthera.BlueToolFixup (2.7.2) D5CB82B7-DC3A-3522-A20A-7FB7944AED4F <57 9 7 6 3 2 1>
+   65    0 0xffffff8005f1c000 0xd000     0xd000     org.acidanthera.NVMeFix (1.1.3) B85FCD6D-9B68-3AC2-B4C9-4BF1441CCCC3 <57 9 7 6 3 2 1>
+   66    0 0xffffff8005f29000 0xb000     0xb000     org.acidanthera.driver.CPUFriend (1.3.0) EAD81069-D1E2-37BA-A2DB-438C80AEDE1D <57 17 9 7 6 3 2 1>
+   67    0 0xffffff8005f34000 0x8000     0x8000     com.1Revenger1.ECEnabler (1.0.6) 62C6C7EF-F3AC-3C94-B801-9FE22BAAC215 <57 9 7 6 3 2 1>
+   69    0 0xffffff8005f3c000 0xa000     0xa000     as.acidanthera.BrightnessKeys (1.0.3) 5A770600-6040-3204-A9E7-EB8618DCEAB4 <68 57 17 9 7 6 3 1>
+   70    0 0xffffff8005f46000 0xcf000    0xcf000    com.dhinakg.AMFIPass (1.4.1) 7DF1CDFC-7EFE-3D82-A3A2-7DACE8B1D097 <57 9 8 7 6 3 2 1>
+   71    0 0xffffff8004072000 0xc000     0xc000     as.vit9696.SMCProcessor (1.3.7) BE9CB674-03BD-3CAC-8CD5-E3E60941A67E <58 57 17 9 7 6 3 2 1>
+   81    1 0xffffff8004360000 0x4e000    0x4e000    org.coolstar.VoodooGPIO (1.1) 6D611A79-9990-34AB-8D14-C0EC9845EE37 <17 7 6 3>
+   82    1 0xffffff80042f3000 0x1a000    0x1a000    as.acidanthera.voodoo.driver.PS2Controller (2.3.7) E3314D9C-A923-3BFF-8F79-8D8F7627085F <17 9 7 6 3 1>
+   84    0 0xffffff800448f000 0xf85000   0xf85000   com.zxystd.itlwm (2.3.0) 681F902C-67C5-3C40-965D-E4553C6A962B <53 18 7 6 3 1>
+   85    0 0xffffff8004335000 0x2b000    0x2b000    com.alexandred.VoodooI2C (2.9.1) 49691D8A-EA92-32CE-A2FD-24AD6DDF45A6 <81 68 63 18 17 7 6 3 1>
+   90    0 0xffffff800407e000 0x23000    0x23000    ru.joedm.SMCSuperIO (1.3.7) 4709CA69-254C-3ED5-B7EB-2D8F41276EA7 <58 57 17 9 7 6 3 2 1>
+   92    0 0xffffff80043fc000 0x93000    0x93000    com.insanelymac.RealtekRTL8111 (3.0.4) AE536A7A-871B-38D4-9848-979EB40D9C97 <53 18 7 6 3 1>
+   96    0 0xffffff800430d000 0xd000     0xd000     as.acidanthera.voodoo.driver.PS2Keyboard (2.3.7) EFA883F4-7558-3E98-A352-E202CB3DFAAF <82 68 9 7 6 3 1>
+  112    0 0xffffff8005414000 0xafd000   0xafd000   com.zxystd.IntelBluetoothFirmware (2.4.0) F9DD55B4-27C6-39D5-AAFC-C599DB3DEBCA <38 7 6 3>
+  140    0 0xffffff7f97945000 0x17742    0x17742    com.nullmoth.NVRMFB (0.1) CC151F75-1305-3928-AA0F-B8BC96EF30A3 <127 7 6 3 1>
+  150    0 0xffffff7f96aa8000 0xd7ca6c   0xd7ca6c   com.nullmoth.NVRM (0.1) A3EEEB46-9C19-3968-A257-144E56568245 <18 17 9 7 6 3 1>
+  151    0 0xffffff7f96a8c000 0x114ee    0x114ee    com.nullmoth.NVAccel (0.1) 772BE080-9CA2-3866-A26D-5E7FCAD55A5C <131 127 107 18 7 6 3 1>
+  167    0 0xffffff7f97940000 0x2d83     0x2d83     com.nullmoth.NVRMAGDC (0.1) 3713FCA7-6969-327F-A9C1-C0E5F3C90736 <130 7 6 3 1>

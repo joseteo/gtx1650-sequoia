@@ -1,0 +1,2 @@
+36f8c325f1eb172acaa82f15e5f51b3188e455c8f4a2e042e05cbf639ef6a1a6  config-broken.plist
+3b4400ad08a4940364c98d13cc9d3e63338ccbf32ffb7f5f2980a9ae77cd81f0  config-fixed.plist
