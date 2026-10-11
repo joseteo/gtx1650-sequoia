@@ -69,6 +69,8 @@ Reported upstream as [issue #104](https://github.com/nullmoth/nvidia-macos-drive
 A **CSS-only** reskin (`guide.css` + `app.css`, zero markup/JS changes) that takes the 1401 setup app from its
 retro theme to a modern macOS-native look — grouped cards, segmented control, step progress circles, light + dark mode.
 
+![1401 with the Apple-native reskin — dark mode](1401-redesign/screenshot.png)
+
 → [`1401-redesign/REDESIGN.md`](1401-redesign/REDESIGN.md) · open `1401-redesign/preview/index.html` to see it live.
 Destined for an upstream PR, not a fork.
 

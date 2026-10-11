@@ -7,6 +7,8 @@ rounded-square app icon treatment, segmented-control tabs, step check-circles, l
 **100% CSS-only.** `index.html` and `app.js` are untouched — the entire redesign is `guide.css` + `app.css`.
 That makes the upstream diff two files and the review trivial.
 
+![1401 with the Apple-native reskin — dark mode](screenshot.png)
+
 ## Files
 
 | File | What |
