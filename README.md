@@ -1,6 +1,6 @@
 <div align="center">
 
-# gtx1650-sequoia
+# nvidia-macos-opencore
 
 **A GTX 1650 Mobile (Turing, TU117M) running macOS 15 Sequoia — 2560×1440 @ 144 Hz over HDMI, Metal 3 — on a Lenovo Optimus laptop.**
 

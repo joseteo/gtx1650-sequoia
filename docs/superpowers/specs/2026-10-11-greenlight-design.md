@@ -2,10 +2,10 @@
 
 Date: 2026-10-11
 Author: José Teo Lorente (@joseteo)
-Repo: https://github.com/joseteo/greenlight (renamed from `gtx1650-sequoia`; GitHub redirects the old URL)
+Repo: https://github.com/joseteo/nvidia-macos-opencore (keyword slug for discoverability; redirects from `greenlight` / `gtx1650-sequoia`)
 Status: design — direction approved by owner 2026-10-11
 
-> Name decided by the owner: **greenlight**; repo renamed to match (§8).
+> Naming decided by the owner: the CLI/brand is **greenlight**; the repo slug is searchable keywords (§8).
 
 ---
 
@@ -133,8 +133,9 @@ Key design points:
 `gtx1650-sequoia` becomes the tool's repo: CLI at the root, the validated knowledge retained as
 `docs/INSTALL-GUIDE.md`, `docs/UPSTREAM-ISSUE.md`, `1401-redesign/` (unchanged), and this design
 under `docs/superpowers/specs/`. README rewritten around the tool, keeping the proof table and the
-Lenovo validation report as the credibility section. **Decided: the repo is renamed to
-`greenlight`** (GitHub keeps redirects from `gtx1650-sequoia` indefinitely).
+Lenovo validation report as the credibility section. **Decided: the CLI/brand name is `greenlight`;
+the repo slug is `nvidia-macos-opencore`** — searchable keywords for discoverability, brand kept on
+the binary (GitHub keeps redirects from `gtx1650-sequoia` and `greenlight` indefinitely).
 
 ## 9. Success criteria
 
@@ -157,7 +158,8 @@ without code changes.
 ## 11. Builder-review settlements (author's calls)
 
 Reviewed by a fresh builder subagent on 2026-10-11. Its eight planning questions are settled as
-follows. Naming was the owner's remaining call: **greenlight**, with the repo renamed to match.
+follows. Naming was the owner's remaining call: **greenlight** for the CLI/brand, with the repo
+renamed to the searchable slug **`nvidia-macos-opencore`**.
 
 1. **`forge` is two-stage.** INSTALL-GUIDE §7 proves a macOS installer needs the *opposite*
    BAR/IONDRVSupport settings from the NVIDIA runtime set, and Audience B's first boot *is* the

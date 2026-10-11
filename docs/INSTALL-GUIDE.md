@@ -1,6 +1,6 @@
 # GTX 1650 Mobile + NullMoth `nvidia-macos-driver` — Install Log & Replication Guide
 
-> Canonical home: https://github.com/joseteo/gtx1650-sequoia · upstream hardware report: [nullmoth/nvidia-macos-driver#104](https://github.com/nullmoth/nvidia-macos-driver/issues/104)
+> Canonical home: https://github.com/joseteo/nvidia-macos-opencore · upstream hardware report: [nullmoth/nvidia-macos-driver#104](https://github.com/nullmoth/nvidia-macos-driver/issues/104)
 
 Date: 2026-10-10
 Driver: **NullMoth NVIDIA driver 1.10.0** (`nullmoth-nvidia-1.10.0.tar.gz`, GSP firmware `610.57.04`)
