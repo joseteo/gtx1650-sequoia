@@ -1,0 +1,173 @@
+/* 1401 — Apple-native theme (drop-in reskin; index.html and app.js unchanged)
+   Replaces the retro theme. Keeps every class/id contract app.js relies on.
+   Light + dark via prefers-color-scheme; honors prefers-reduced-motion. */
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+:root {
+  --bg: #f5f5f7;
+  --card: #ffffff;
+  --text: #1d1d1f;
+  --secondary: #6e6e73;
+  --tertiary: #86868b;
+  --hairline: rgba(0, 0, 0, 0.08);
+  --accent: #007aff;
+  --green: #28c840;
+  --red: #ff3b30;
+  --yellow: #ff9f0a;
+  --brand: #7d2aff;
+  --seg-bg: #e8e8eb;
+  --radius-card: 10px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1e1e;
+    --card: #2c2c2e;
+    --text: #f5f5f7;
+    --secondary: #aeaeb2;
+    --tertiary: #98989d;
+    --hairline: rgba(255, 255, 255, 0.12);
+    --accent: #0a84ff;
+    --seg-bg: rgba(255, 255, 255, 0.10);
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 22px 20px 30px;
+  color: var(--text);
+  font: 13px/1.45 var(--font);
+  background: var(--bg);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 0.5px solid var(--hairline); margin: 12px auto; }
+.app { max-width: 720px; margin: 0 auto; }
+
+/* ---- header: app icon + wordmark ---- */
+.top { margin: 2px 0 14px; }
+.logo { border-collapse: collapse; margin: 0 auto; }
+.logo td { padding: 0 6px; vertical-align: middle; }
+.mark {
+  display: block; width: 52px; height: 52px;
+  border-radius: 12px; /* rounded-square app icon */
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.28), 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+.word { text-align: left; }
+.nm {
+  font: 700 26px/1.05 var(--font); font-style: normal;
+  letter-spacing: -0.02em; color: var(--text);
+}
+.sy { font: 400 13px/1.2 var(--font); font-style: normal; color: var(--secondary); }
+.ig { font-weight: 600; color: var(--text); }
+
+/* ---- ticker -> static privacy strip (original text stays in markup, hidden) ---- */
+.ticker {
+  overflow: hidden; white-space: nowrap;
+  margin: 0 0 14px; padding: 7px 11px;
+  background: var(--card); border: 0.5px solid var(--hairline); border-radius: 8px;
+  font: 400 11.5px/1.4 var(--font); color: var(--secondary);
+}
+.ticker span { display: none; }
+.ticker::before {
+  content: "Everything stays on this Mac  ·  Every change is backed up first  ·  A way back is always in the boot picker  ·  Free forever";
+  display: block; text-align: center; white-space: normal;
+}
+
+/* ---- tabs -> macOS segmented control ---- */
+.tabs {
+  display: flex; gap: 2px; width: max-content;
+  margin: 0 auto 14px; padding: 2px;
+  background: var(--seg-bg); border-radius: 9px;
+}
+
+/* ---- buttons: macOS push buttons ---- */
+.b {
+  padding: 3px 11px;
+  font: 500 12.5px/1.5 var(--font);
+  color: var(--text);
+  background: var(--card);
+  border: 0.5px solid rgba(0, 0, 0, 0.18);
+  border-radius: 6px;
+  box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+@media (prefers-color-scheme: dark) {
+  .b { border-color: rgba(255, 255, 255, 0.22); box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.4); }
+}
+.b:active { background: var(--seg-bg); }
+.b:disabled { color: var(--tertiary); box-shadow: none; border-color: var(--hairline); cursor: default; }
+.b:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* segmented-control buttons override push-button chrome */
+.tabs .b {
+  border: 0; box-shadow: none; background: transparent;
+  border-radius: 7px; padding: 3px 14px; font-weight: 500; color: var(--text);
+}
+.tabs .b:active { background: transparent; }
+.tabs .tab.on {
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0.5px 1px rgba(0, 0, 0, 0.06);
+  font-weight: 600;
+}
+
+/* primary actions in accent blue */
+#go, #upddrv, #uwr, #rs { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 0.5px 1.5px rgba(0, 122, 255, 0.35); }
+#go:disabled, #upddrv:disabled, #uwr:disabled, #rs:disabled { background: var(--card); color: var(--tertiary); border-color: var(--hairline); box-shadow: none; }
+
+/* ---- "This Mac" table -> inset grouped list ---- */
+.pc {
+  width: 100%; margin: 0 0 12px;
+  border: 0.5px solid var(--hairline); border-spacing: 0;
+  background: var(--card); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); overflow: hidden;
+}
+.pc caption {
+  padding: 0 0 6px 2px; text-align: left;
+  font: 600 13px/1.3 var(--font); color: var(--text);
+}
+.pc th, .pc td { padding: 7px 12px; border: 0; border-top: 0.5px solid var(--hairline); vertical-align: top; }
+.pc tr:first-child th, .pc tr:first-child td { border-top: 0; }
+.pc th { font: 400 12.5px/1.4 var(--font); color: var(--text); background: none; white-space: nowrap; text-align: left; }
+.pc td { font: 400 12.5px/1.4 var(--font); color: var(--secondary); text-align: right; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+
+/* ---- inline code / kbd ---- */
+code { font: 12px var(--mono); color: inherit; background: var(--seg-bg); padding: 1px 4px; border-radius: 4px; overflow-wrap: anywhere; }
+kbd { padding: 1px 5px; font: 600 11px var(--mono); color: var(--text); background: var(--card); border: 0.5px solid var(--hairline); border-radius: 4px; }
+strong { color: inherit; }
+
+/* ---- footer: quiet, badges become neutral chips, the joke survives ---- */
+.foot { margin-top: 16px; font-size: 11px; color: var(--tertiary); }
+.foot p { margin: 6px 0; }
+.badges { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.bd {
+  display: inline-block; width: auto; height: auto; margin: 0; padding: 3px 8px;
+  font: 600 9px/1.35 var(--font); font-style: normal; letter-spacing: 0.04em;
+  color: var(--secondary); background: var(--card);
+  border: 0.5px solid var(--hairline); border-radius: 6px;
+  vertical-align: middle; text-align: center;
+}
+.bd1 { color: var(--brand); font-size: 11px; }
+.counter b { padding: 0 4px; margin: 0 2px; font: 11px var(--mono); letter-spacing: 1px; color: var(--secondary); background: var(--card); border: 0.5px solid var(--hairline); border-radius: 4px; }
+
+@media (max-width: 640px) {
+  .nm { font-size: 22px; }
+  .pc th { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media print {
+  body { padding: 0; color: #000; background: #fff; }
+  .tabs, .badges, .counter { display: none; }
+  .pc, .panel, .ticker { border: 1px solid #000; box-shadow: none; background: #fff; }
+  .pc th, .pc td, .nm, .sy, .ig, strong { color: #000 !important; }
+}

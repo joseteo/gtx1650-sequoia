@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>1401 redesign — Before / After (v1)</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 28px 24px 48px;
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    background: #2a2a2e; color: #f5f5f7;
+  }
+  .page-head { text-align: center; margin-bottom: 22px; }
+  .page-head h1 { font-size: 22px; font-weight: 700; margin: 0 0 4px; letter-spacing: -.01em; }
+  .page-head .sub { color: #98989d; font-size: 13px; margin: 0; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; max-width: 1500px; margin: 0 auto; align-items: start; }
+  .col h2 { font-size: 13px; font-weight: 600; color: #aeaeb2; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 10px 4px; }
+  .notes { margin: 12px 4px 0; padding-left: 18px; color: #c7c7cc; font-size: 12.5px; }
+  .notes li { margin-bottom: 5px; }
+  .page-foot { text-align: center; color: #86868b; font-size: 12.5px; margin-top: 26px; }
+
+  /* ---- shared window chrome ---- */
+  .window { border-radius: 12px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.5), 0 0 0 .5px rgba(255,255,255,.12); }
+  .titlebar { display: flex; align-items: center; gap: 8px; padding: 10px 12px; }
+  .tl { width: 12px; height: 12px; border-radius: 50%; }
+  .tl.r { background: #ff5f57; } .tl.y { background: #febc2e; } .tl.g { background: #28c840; }
+  .titlebar .wt { font-size: 13px; font-weight: 600; margin-left: 6px; }
+  .content { padding: 14px 18px 18px; }
+
+  /* ============================================================
+     BEFORE — faithful miniature of the current retro theme
+     ============================================================ */
+  .before .titlebar { background: #38343d; }
+  .before .wt { color: #d5d5da; }
+  .before .content {
+    background-color: #000;
+    background-image:
+      radial-gradient(1px 1px at 23px 41px, #cdb6ff 50%, transparent 51%),
+      radial-gradient(1px 1px at 157px 12px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 201px 87px, #d9c8ff 50%, transparent 51%),
+      radial-gradient(1px 1px at 61px 111px, #6f4bb0 50%, transparent 51%);
+    background-size: 240px 240px;
+    color: #e8e0f4; font: 11px/1.4 Verdana, Geneva, sans-serif;
+  }
+  .before .logo { font: italic bold 26px/1 "Times New Roman", serif; color: #cc99ff; }
+  .before .logo small { font: italic 15px/1 "Times New Roman", serif; color: #9966cc; }
+  .before .logo div { font: bold 10px Verdana, sans-serif; color: #fff; font-style: normal; margin-top: 2px; }
+  .before .ticker { overflow: hidden; white-space: nowrap; margin: 8px 0; padding: 1px 0;
+    background: #1a0033; color: #00ffff; font: bold 10px/1.5 "Courier New", monospace; }
+  .before .ticker span { display: inline-block; padding-left: 100%; animation: bscroll 22s linear infinite; }
+  @keyframes bscroll { to { transform: translateX(-100%); } }
+  .before .tabs button { padding: 2px 8px; font: bold 10px Verdana, sans-serif; color: #fff;
+    background: #4b1f86; border: 2px outset #9966cc; }
+  .before .tabs button.on { color: #ffcc00; border-style: inset; }
+  .before .panel { margin: 0 0 10px; padding: 6px 8px; background: #1a0033; border: 2px outset #663399; }
+  .before .panel p { margin: 4px 0; }
+  .before .pc { width: 100%; border: 2px outset #663399; border-spacing: 2px; margin: 0 0 10px; }
+  .before .pc caption { text-align: left; font-weight: bold; color: #ffcc00; padding-bottom: 2px; }
+  .before .pc th, .before .pc td { padding: 1px 5px; border: 1px inset #663399; text-align: left; }
+  .before .pc th { font-size: 9px; color: #fff; background: #330066; }
+  .before .pc td { font: 10px "Courier New", monospace; color: #fff; }
+  .before .sh { font: bold 13px "Times New Roman", serif; color: #fff; margin: 0 0 3px; }
+  .before .b { padding: 2px 9px; font: bold 10px Verdana, sans-serif; color: #fff; background: #4b1f86; border: 2px outset #9966cc; }
+  .before .b.dis { color: #8a78a8; }
+  .before .done b::after { content: "  [DONE]"; color: #00ff00; font: bold 8px "Courier New", monospace; }
+  .before ol { margin: 4px 0; padding-left: 20px; } .before li { margin-bottom: 6px; }
+  .before .foot { text-align: center; font-size: 9px; color: #9999cc; }
+  .before .foot hr { border: 1px inset #663399; width: 80%; }
+  .before .bd { display: inline-block; width: 66px; height: 24px; margin: 2px; font: bold 7px/24px Verdana, sans-serif; vertical-align: middle; }
+  .before .bd1 { font: italic bold 12px/22px "Times New Roman", serif; color: #cc99ff; background: #000; border: 1px solid #cc99ff; }
+  .before .bd2 { color: #ffcc00; background: #330066; border: 2px outset #663399; line-height: 1.2; padding-top: 3px; height: 24px; }
+  .before .bd3 { color: #00ffff; background: #000; border: 1px solid #00ffff; font-family: "Courier New", monospace; line-height: 1.2; padding-top: 2px; }
+  .before .bd4 { color: #000; background: #cc99ff; border: 1px solid #fff; line-height: 1.2; padding-top: 3px; }
+
+  /* ============================================================
+     AFTER — Apple-native redesign
+     ============================================================ */
+  .after .titlebar { background: rgba(246,246,248,.92); }
+  .after .wt { color: #1d1d1f; }
+  .after .content { background: #f5f5f7; color: #1d1d1f; font: 13px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+
+  .after .apphead { display: flex; align-items: center; gap: 12px; margin: 2px 0 14px; }
+  .after .icon {
+    width: 52px; height: 52px; border-radius: 12px; /* ~23% squircle-ish */
+    background: linear-gradient(145deg, #7d2aff 0%, #b06bff 100%);
+    box-shadow: inset 0 0 0 .5px rgba(255,255,255,.25), 0 1px 4px rgba(125,42,255,.35);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 17px; letter-spacing: -.02em;
+  }
+  .after .apphead h3 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+  .after .apphead .sub { margin: 1px 0 0; font-size: 12px; color: #6e6e73; }
+
+  .after .privacy {
+    display: flex; align-items: center; gap: 7px;
+    margin: 0 0 14px; padding: 7px 11px;
+    font-size: 11.5px; color: #6e6e73;
+    background: #fff; border: .5px solid rgba(0,0,0,.08); border-radius: 8px;
+  }
+  .after .privacy svg { flex: none; }
+
+  .after .seg {
+    display: flex; gap: 2px; padding: 2px; margin: 0 0 14px;
+    background: #e8e8eb; border-radius: 9px; width: max-content;
+  }
+  .after .seg button {
+    border: 0; background: transparent; padding: 3px 14px;
+    font: 500 12.5px/1.6 inherit; color: #1d1d1f; border-radius: 7px; cursor: default;
+  }
+  .after .seg button.on { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 .5px 1px rgba(0,0,0,.06); font-weight: 600; }
+
+  .after .card {
+    background: #fff; border: .5px solid rgba(0,0,0,.08); border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    padding: 12px 14px; margin: 0 0 12px;
+  }
+  .after .card h4 { margin: 0 0 6px; font-size: 13px; font-weight: 600; }
+  .after .card p { margin: 0 0 8px; font-size: 12.5px; color: #3a3a3c; }
+  .after .card p:last-child { margin-bottom: 0; }
+  .after a { color: #007aff; text-decoration: none; }
+
+  .after .spec { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font-size: 12.5px; }
+  .after .spec + .spec { border-top: .5px solid rgba(0,0,0,.07); }
+  .after .spec .k { color: #1d1d1f; }
+  .after .spec .v { color: #6e6e73; text-align: right; font-variant-numeric: tabular-nums; }
+
+  .after .verdict {
+    display: flex; gap: 9px; align-items: flex-start;
+    background: rgba(52,199,89,.10); border: .5px solid rgba(52,199,89,.30);
+    border-radius: 10px; padding: 10px 12px; margin: 0 0 12px;
+    font-size: 12.5px; color: #1d1d1f;
+  }
+  .after .verdict .dot { width: 8px; height: 8px; border-radius: 50%; background: #28c840; margin-top: 4px; flex: none; }
+
+  .after .step { display: flex; gap: 10px; padding: 7px 0; font-size: 12.5px; align-items: flex-start; }
+  .after .step + .step { border-top: .5px solid rgba(0,0,0,.07); }
+  .after .n {
+    width: 20px; height: 20px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; background: #e8e8eb; color: #6e6e73;
+  }
+  .after .step.done .n { background: #28c840; color: #fff; }
+  .after .step.done .n::before { content: "✓"; }
+  .after .step.done .n span { display: none; }
+  .after .step.now .n { background: #007aff; color: #fff; }
+  .after .step .t b { font-weight: 600; }
+  .after .step .t { color: #3a3a3c; }
+
+  .after .btn {
+    display: inline-block; padding: 3px 11px; font-size: 12.5px; font-weight: 500;
+    background: #fff; border: .5px solid rgba(0,0,0,.18); border-radius: 6px;
+    box-shadow: 0 .5px 1.5px rgba(0,0,0,.08); color: #1d1d1f;
+  }
+  .after .btn.primary { background: #007aff; border-color: transparent; color: #fff; box-shadow: 0 .5px 1.5px rgba(0,122,255,.4); }
+  .after .btn.dis { color: #86868b; box-shadow: none; border-color: rgba(0,0,0,.10); }
+
+  .after .log {
+    background: #1e1e1e; color: #c7c7cc; border-radius: 8px;
+    font: 11px/1.5 ui-monospace, "SF Mono", Menlo, monospace;
+    padding: 8px 10px; margin: 6px 0 4px; white-space: pre-wrap;
+  }
+  .after .log .ok { color: #30d158; } .after .log .ac { color: #64d2ff; }
+
+  .after .foot { text-align: center; font-size: 11px; color: #86868b; margin-top: 6px; }
+  .after .foot hr { border: 0; border-top: .5px solid rgba(0,0,0,.12); width: 64%; margin: 10px auto; }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <h1>1401 — Apple-native redesign, v1</h1>
+  <p class="sub">Same <code>index.html</code> structure, ids and JS hooks — a reskin (guide.css/app.css replaced), not a rewrite. React in chat: keep/change anything.</p>
+</header>
+
+<div class="grid">
+
+  <!-- ================= BEFORE ================= -->
+  <section class="col">
+    <h2>Before — current theme</h2>
+    <div class="window before">
+      <div class="titlebar"><span class="tl r"></span><span class="tl y"></span><span class="tl g"></span><span class="wt">1401</span></div>
+      <div class="content">
+        <div class="logo">1401 <small>by NullMoth Systems</small><div>NVIDIA Driver Setup for this Mac</div></div>
+        <div class="ticker"><span>*** YOUR GEFORCE ON macOS *** NOTHING ABOUT THIS MAC IS SENT ANYWHERE *** EVERY CHANGE IS BACKED UP FIRST ***</span></div>
+        <p class="tabs"><button class="on">NVIDIA driver</button> <button>USB ports</button> <button>Crash report</button></p>
+        <div class="panel">Supports configuration of OpenCore setups on macOS 15 and macOS 26 Tahoe (beta)… <b>Keep the USB stick or disk OpenCore started this Mac from plugged in</b>…</div>
+        <table class="pc"><caption>This Mac:</caption>
+          <tr><th>macOS</th><td>15.7.4</td></tr>
+          <tr><th>Processor</th><td>x86_64</td></tr>
+          <tr><th>Graphics</th><td>Intel UHD Graphics 630</td></tr>
+          <tr><th>OpenCore</th><td>REL-106-2025-11-03</td></tr>
+          <tr><th>NullMoth driver</th><td>installed — 1.10.0</td></tr>
+        </table>
+        <div class="panel"><p class="sh">What happens</p>
+          <ol>
+            <li class="done"><b>Get the driver.</b></li>
+            <li class="done"><b>Look before touching anything.</b> <button class="b">Show me the changes</button></li>
+            <li><b>Install.</b> <button class="b dis">Install the driver</button></li>
+            <li><b>Restart.</b> <button class="b dis">Restart now</button></li>
+          </ol>
+        </div>
+        <div class="panel"><p class="sh">Update the driver</p><p><button class="b">Check for a newer driver</button> <button class="b">Update driver</button></p></div>
+        <div class="panel"><p class="sh">If something goes wrong after you restart</p><p>…choose <b>1401: Remove NVIDIA driver</b>…</p><p><button class="b">Remove the driver</button></p></div>
+        <div class="foot"><hr>
+          <span class="bd bd1">1401</span><span class="bd bd2">MADE FOR<br>macOS 15+26</span><span class="bd bd3">NO COOKIES<br>NO TRACKING</span><span class="bd bd4">FREE<br>FOREVER</span>
+          <p>You are visitor number <b style="font-family:'Courier New',monospace;color:#00ffff;background:#000;border:2px inset #663399;padding:0 3px">000001</b></p>
+          <p>© 2026 NullMoth Systems</p>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li>Retro BBS/hacker aesthetic: neon on black, outset borders, Times italic + Courier</li>
+      <li>Charming identity, but reads as "toy" next to macOS — and wall-of-text panels bury the safety story</li>
+      <li>Scrolling ticker, blinking elements: motion + contrast accessibility issues</li>
+    </ul>
+  </section>
+
+  <!-- ================= AFTER ================= -->
+  <section class="col">
+    <h2>After — Apple-native</h2>
+    <div class="window after">
+      <div class="titlebar"><span class="tl r"></span><span class="tl y"></span><span class="tl g"></span><span class="wt">1401</span></div>
+      <div class="content">
+        <div class="apphead">
+          <div class="icon">1401</div>
+          <div>
+            <h3>1401</h3>
+            <p class="sub">NVIDIA Driver Setup · NullMoth Systems</p>
+          </div>
+        </div>
+        <div class="privacy">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><rect x="1" y="6" width="10" height="7" rx="1.5" fill="#86868b"/><path d="M3 6V4.5a3 3 0 016 0V6" stroke="#86868b" stroke-width="1.6"/></svg>
+          Everything stays on this Mac · Every change is backed up first · A way back lives in the boot picker
+        </div>
+        <div class="seg"><button class="on">NVIDIA driver</button><button>USB ports</button><button>Crash report</button></div>
+
+        <div class="card">
+          <p>Supports OpenCore setups on macOS 15 and macOS 26 Tahoe (beta). The driver runtime needs macOS 15.5 or later. <b>Keep the disk OpenCore started this Mac from plugged in.</b> New setup? Start with the <a href="#">OpenCore Install Guide</a>.</p>
+        </div>
+
+        <div class="card">
+          <h4>This Mac</h4>
+          <div class="spec"><span class="k">macOS</span><span class="v">15.7.4</span></div>
+          <div class="spec"><span class="k">Processor</span><span class="v">x86_64</span></div>
+          <div class="spec"><span class="k">Graphics</span><span class="v">Intel UHD Graphics 630</span></div>
+          <div class="spec"><span class="k">OpenCore</span><span class="v">REL-106-2025-11-03</span></div>
+          <div class="spec"><span class="k">NullMoth driver</span><span class="v">1.10.0 — installed</span></div>
+        </div>
+
+        <div class="verdict"><span class="dot"></span><span><b>Driver installed and running.</b> GTX 1650 driving GS27QA at 2560×1440 · 144 Hz · Metal 3.</span></div>
+
+        <div class="card">
+          <h4>What happens</h4>
+          <div class="step done"><span class="n"><span>1</span></span><span class="t"><b>Get the driver.</b> Downloaded and verified against the published SHA-256.</span></div>
+          <div class="step done"><span class="n"><span>2</span></span><span class="t"><b>Look before touching anything.</b> Every config change listed before anything happens. <span class="btn">Show me the changes</span></span></div>
+          <div class="step now"><span class="n"><span>3</span></span><span class="t"><b>Install.</b> Config backed up, driver installed, recovery entry added to the boot picker. <span class="btn primary">Install the driver</span></span></div>
+          <div class="step"><span class="n"><span>4</span></span><span class="t"><b>Restart.</b> Allow the extensions in Privacy &amp; Security if macOS asks. <span class="btn dis">Restart now</span></span></div>
+        </div>
+
+        <div class="card">
+          <h4>Activity</h4>
+          <div class="log"><span class="ac">NVRM-xnu:</span> probe 10de:1f99 class 03.00
+<span class="ac">NVRM-xnu:</span> rm_is_supported_pci_device OK
+<span class="ac">NVRM-xnu:</span> armed on 01:00.0 10de:1f99
+<span class="ok">✓ driver armed — display at 2560×1440 @ 144 Hz</span></div>
+          <p><a href="#">Open the log folder</a></p>
+        </div>
+
+        <div class="card">
+          <h4>Update</h4>
+          <p>Checks the newest NullMoth driver, verifies its SHA-256, installs it the same way. <span class="btn">Check for a newer driver</span></p>
+        </div>
+
+        <div class="card">
+          <h4>If something goes wrong</h4>
+          <p>Restart and choose <b>1401: Remove NVIDIA driver</b> in the boot picker. The Mac comes back exactly as it was. <span class="btn">Remove the driver</span></p>
+        </div>
+
+        <div class="foot">
+          <hr>
+          <p>Driver 1.10.0 · <a href="#">source code</a> · Free forever, nothing leaves this Mac</p>
+          <p>© 2026 NullMoth Systems · NullMoth and the moth logo are trademarks of NullMoth Systems</p>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li>SF typography, System-Settings-style grouped cards/lists, rounded-square (≈23% radius) app icon keeps a purple brand nod</li>
+      <li>Ticker → static privacy strip with lock icon; tabs → macOS segmented control; steps → check-circle progress</li>
+      <li>Real state visible at a glance: green verdict card, live log with mono font, tabular numbers</li>
+      <li>CSS custom properties + <code>prefers-color-scheme</code> dark variant + <code>prefers-reduced-motion</code> respected; buttons/segmented control keyboard- and VoiceOver-correct</li>
+      <li>The footer joke ("visitor 000001") survives, quieter</li>
+    </ul>
+  </section>
+
+</div>
+
+<p class="page-foot">Static preview — reply in chat with what to keep, change, or push further. If you approve the direction, I turn it into a drop-in guide.css/app.css patch for upstream.</p>
+
+</body>
+</html>

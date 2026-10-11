@@ -1,0 +1,63 @@
+/* 1401 — Apple-native theme: app-specific surfaces (loads after guide.css) */
+
+/* cards */
+.panel {
+  margin: 0 0 12px; padding: 12px 14px;
+  background: var(--card);
+  border: 0.5px solid var(--hairline); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+.panel p { margin: 0 0 8px; }
+.panel p:last-child { margin-bottom: 0; }
+
+/* section headings */
+.sh { margin: 0 0 6px; font: 600 13px/1.3 var(--font); font-style: normal; color: var(--text); }
+
+/* install steps: circle counters, green check when done, accent when current */
+.todo { margin: 4px 0 0; padding: 0; list-style: none; counter-reset: step; }
+.todo li {
+  counter-increment: step; position: relative;
+  margin: 0; padding: 7px 0 7px 30px;
+  border-top: 0.5px solid var(--hairline);
+}
+.todo li:first-child { border-top: 0; }
+.todo li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: 7px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--seg-bg); color: var(--secondary);
+  font: 600 11px/20px var(--font); text-align: center;
+}
+.todo li.done::before { content: "✓"; background: var(--green); color: #fff; }
+.todo li.now::before { background: var(--accent); color: #fff; }
+.todo li.now b { color: var(--accent); }
+
+/* activity log: stays dark in both modes */
+#log {
+  margin: 0; height: 220px; overflow: auto; padding: 8px 10px;
+  background: #1e1e1e; color: #c7c7cc; border: 0; border-radius: 8px;
+  font: 11px/1.5 var(--mono); white-space: pre-wrap;
+}
+#log .c { color: #64d2ff; }
+#log .k { color: #30d158; }
+#log .x { color: #ff453a; font-weight: 600; }
+#log .s { color: #ffffff; font-weight: 600; }
+
+/* status text */
+.good { color: var(--green); font-weight: 600; }
+.bad { color: var(--red); font-weight: 600; }
+.warn { color: var(--yellow); font-weight: 600; }
+
+.small { font-size: 11px; color: var(--secondary); }
+select { font: 12.5px var(--font); color: var(--text); }
+
+/* USB ports map */
+.ports {
+  margin: 0 0 12px; border-spacing: 0;
+  background: var(--card); border: 0.5px solid var(--hairline);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-card); overflow: hidden;
+}
+.ports td { padding: 6px 10px; border-top: 0.5px solid var(--hairline); font-size: 12.5px; }
+.ports tr:first-child td { border-top: 0; }
+.ports td.on { color: var(--green); font-weight: 600; }
+.ports td.off { color: var(--tertiary); }
