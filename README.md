@@ -97,6 +97,7 @@ Destined for an upstream PR, not a fork.
 ## Docs
 
 - [docs/INSTALL-GUIDE.md](docs/INSTALL-GUIDE.md) — full install log, config delta, recovery playbook, from-scratch replication
+- [docs/TRACKPAD-BLUETOOTH-SETUP.md](docs/TRACKPAD-BLUETOOTH-SETUP.md) — I2C trackpad + Intel Bluetooth on the IdeaPad Gaming 3: from-scratch recipe and debugging record
 - [docs/UPSTREAM-ISSUE.md](docs/UPSTREAM-ISSUE.md) — the hardware report filed upstream ([#104](https://github.com/nullmoth/nvidia-macos-driver/issues/104))
 - [docs/PLAN-2-FORGE.md](docs/PLAN-2-FORGE.md) — what's next: `forge` (OpenCore EFI generation)
 - [1401-redesign/](1401-redesign/) — the app redesign
