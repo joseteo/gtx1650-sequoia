@@ -56,7 +56,7 @@ Everything below is **verified against the live `EFI/OC/config.plist`** on 2026-
 
 | Key | Value | Notes |
 |---|---|---|
-| `boot-args` | `-v keepsyms=1 debug=0x100 alcid=11 npci=0x3000 igfxonln=1 dart=0 igfxfw=2 agdpmod=vit9696 nvfb=1 nvaccel=1 nvfbheads=4 -nvkmsnosmooth amfi_get_out_of_my_way=0x1 amfi=0x80 nvrmsettle=10000` | see per-arg table below |
+| `boot-args` | `-v keepsyms=1 debug=0x100 alcid=11 npci=0x3000 igfxonln=1 dart=0 igfxfw=2 agdpmod=vit9696 nvfb=1 nvaccel=1 nvfbheads=4 -nvkmsnosmooth amfi_get_out_of_my_way=0x1 amfi=0x80 -btlfxallowanyaddr nvrmsettle=10000` | see per-arg table below — **this exact superset is the canonical string; never regenerate boot-args from a partial template** |
 | `csr-active-config` | data `<430A0000>` (bytes `43 0A 00 00` = 0x0A43) | unsigned/unapproved kexts + unauthenticated root + unrestricted NVRAM/FS — the README's tested value |
 
 Both keys are also listed under `NVRAM → Delete` (rewritten every boot).
@@ -68,6 +68,7 @@ boot-args, piece by piece:
 | `nvfb=1 nvaccel=1 nvfbheads=4 -nvkmsnosmooth` | NullMoth README | enable framebuffer + accelerator, 4 display heads |
 | `amfi_get_out_of_my_way=0x1 amfi=0x80` | NullMoth README | lets WindowServer load the unsigned GPUBundle |
 | `nvrmsettle=10000` | this machine | 10 s settle before display arm, because BAR1 (256 MB) can't be moved off the boot screen; matches kernel log `auto-go: go(2) in 10000 ms` |
+| `-btlfxallowanyaddr` | bluetooth setup | BlueToolFixup companion flag for the Intel AX201 (see `TRACKPAD-BLUETOOTH-SETUP.md`); harmless to the NVIDIA path |
 | `-v keepsyms=1 debug=0x100` | pre-existing | verbose + panic debugging (keep while experimenting) |
 | `alcid=11` | pre-existing | AppleALC layout 11 for the onboard Realtek audio |
 | `npci=0x3000 igfxonln=1 dart=0 igfxfw=2 agdpmod=vit9696` | pre-existing | laptop/iGPU baseline; do not add `agdpmod=pikera` or any NVIDIA WhateverGreen patch (README: remove them) |
@@ -124,6 +125,8 @@ Full boot log saved at `~/Documents/drivers/bootlog-20261010.txt`.
 ---
 
 ## 5. Known limitations & caveats
+
+- **⚠ Config-rewrite hazard (bit us on 2026-10-11).** Any tool or session that regenerates `config.plist` from a partial template can silently kill the display. Two specific clobbers happened: `nvrmsettle=10000` dropped from `boot-args` (driver loads but never scans: `fbmap: never scanned`, `NVRMFBClaim` unmatched, AGDC `idle`) **and** the §2 `class-code=FFFFFFFF`/`disable-gpu` block re-appearing on the dGPU path (NVRM never probes — silent). Both at once = black external monitor with zero errors. Rule: boot-args edits must always start from the live string, and the dGPU DeviceProperties path must stay absent. Greenlight's `doctor` checks for both.
 
 - **Internal panel stays on the Intel iGPU** (Optimus: panel is wired to Intel; upstream explicitly does not implement an Optimus display mux). The dGPU drives only the external HDMI output.
 - **Turing is "validation pending" upstream** — our report is the first GTX 1650 Mobile data point; expect rough edges.

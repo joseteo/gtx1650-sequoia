@@ -138,6 +138,8 @@ And in the same GUID's `boot-args`, append (keep your existing args untouched):
 -btlfxallowanyaddr
 ```
 
+> **⚠ Do not regenerate `boot-args` from a template — append only.** On the GTX 1650 display setup the string must keep `nvrmsettle=10000` (dropping it = external monitor never arms, no error). Likewise never re-add `class-code=<FFFFFFFF>` / `disable-gpu` DeviceProperties on the dGPU path (`PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)`) — that silently disables the NVIDIA driver entirely. Both clobbers happened on 2026-10-11 and cost a boot cycle each. See `INSTALL-GUIDE.md` §2 and §5.
+
 ## 1.6 Apply, reboot, verify
 
 1. `sudo diskutil mount <esp>` — Sequoia refuses EFI mounts for non-root users (`storagekitd: skipping EFI partition owned by uid 0`); the ESP also unmounts at every reboot.
